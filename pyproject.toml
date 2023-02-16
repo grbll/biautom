@@ -1,3 +1,19 @@
-[buil-system]
+[build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "biautom"
+authors = [
+  {name = "grbll", email = "grbll@tutanota.com"},
+]
+version = "0.0.1"
+description = "Package for playtesting 'biautom' board game."
+readme = "README.md"
+requires-python = ">3.9"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+biautom-game = "biautom.main:main"
