@@ -1,22 +1,23 @@
-# import json
-# import importlib.resources
-# from typing import Dict
-#
-#
-# default_chip = """
-# {
-#     "type" : "Default"
-# }
-# """
-#
-#
-# def load_all() -> Dict[str, Dict]:
-#     chip_data = {"Default": json.loads(default_chip)}
-#     return chip_data
+import json
+import re
+import importlib.resources
+from typing import Dict
 
 
-# try:
-#     with importlib.resources.open_text('biautom.chipdata', 'gkass.json') as file:
-#         grass_content = json.load(file)
-# except:
-#     grass_content = json.loads(default_chip)
+default_chip = """
+{
+    "type" : "Default"
+}
+"""
+
+
+def load_all() -> Dict[str, Dict]:
+    file_list = [file for file in importlib.resources.contents('biautom.chipdata') if re.match('[A-z]*\.json', file)]
+    chip_data = {"default": json.loads(default_chip)}
+
+    for file in file_list:
+        chip_data.update({file.split('.')[0] : json.load(importlib.resources.open_text('biautom.chipdata', file))})
+    
+    return chip_data
+
+print(load_all())
