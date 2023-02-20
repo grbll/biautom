@@ -12,7 +12,7 @@
       "type": "string"
     },
     "testi": {
-      "$ref": "/sub-schema/base-querry"
+      "$ref": "/sub-schema/base-query"
     }
   }
 }

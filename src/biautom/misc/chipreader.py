@@ -13,22 +13,30 @@ default_string = """
     "testi" : {"test2" : "44", "test1": "hallo"}
 }
 """
+
+test_string = """
+{
+        "origin" : [2, 4],
+        "vectors": [[5,4]]
+}
+"""
 default_chip = json.loads(default_string)
 
 schemas = [
     json.load(importlib.resources.open_text("biautom.misc", "chip-schema.json")),
-    json.load(importlib.resources.open_text("biautom.misc", "test-schema.json")),
+    json.load(importlib.resources.open_text("biautom.misc", "base-query-schema.json")),
+    json.load(importlib.resources.open_text("biautom.misc", "two-vector-schema.json")),
 ]
 
 schema_store = {}
 
 for schema in schemas:
-    schema_store.update({schema["$id"] : schema})
+    schema_store.update({schema["$id"]: schema})
 
-resolver = RefResolver.from_schema(schemas[0], store=schema_store)
-validator = Draft202012Validator(schemas[0], resolver=resolver)
+resolver = RefResolver.from_schema(schemas[1], store=schema_store)
+validator = Draft202012Validator(schemas[1], resolver=resolver)
 
-jsonData = json.loads(default_string)
+jsonData = json.loads(test_string)
 validator.validate(jsonData)
 
 
