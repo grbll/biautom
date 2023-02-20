@@ -1,8 +1,4 @@
 {
-  "name": "grass",
-  "placement": [
-    "u",
-    "v",
-    "g"
-  ]
+  "type": "grass",
+  "cathegory" : "plant"
 }

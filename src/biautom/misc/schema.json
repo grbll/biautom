@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "family": {
+            "description" : "A group of closely related chips, which may look for each other.",
+            "type": "string"
+            },
+        "category": {
+            "description": "The kingdom, the organism belongs to.",
+            "type": "string"}
+        },
+    "required": ["family", "category"]
+}
+
