@@ -3,35 +3,33 @@ import re
 import importlib.resources
 from typing import Dict
 
-from jsonschema import validate
-import jsonschema
+from jsonschema import Draft202012Validator, RefResolver
 
-# chip_schema = {
-#     "$schema": "https://json-schema.org/draft/2020-12/schema",
-#     "type": "object",
-#     "properties": {
-#         "family": {
-#             "description" : "A group of closely related chips, which may look for each other.",
-#             "type": "string",
-#             },
-#         "category": {
-#             "description": "The kingdom, the organism belongs to.",
-#             "type": "string"}
-#         },
-#     "required": ["", "category"]
-# }
 
 default_string = """
 {
     "family" : "Default",
-    "category" : "*"
+    "category" : "*",
+    "testi" : {"test2" : "44", "test1": "hallo"}
 }
 """
-
-chip_schema = json.load(importlib.resources.open_text("biautom.misc", "schema.json"))
 default_chip = json.loads(default_string)
 
-validate(default_chip, chip_schema)
+schemas = [
+    json.load(importlib.resources.open_text("biautom.misc", "chip-schema.json")),
+    json.load(importlib.resources.open_text("biautom.misc", "test-schema.json")),
+]
+
+schema_store = {}
+
+for schema in schemas:
+    schema_store.update({schema["$id"] : schema})
+
+resolver = RefResolver.from_schema(schemas[0], store=schema_store)
+validator = Draft202012Validator(schemas[0], resolver=resolver)
+
+jsonData = json.loads(default_string)
+validator.validate(jsonData)
 
 
 def load_all() -> Dict[str, Dict]:
