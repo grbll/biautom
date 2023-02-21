@@ -27,6 +27,16 @@
       "items" : {
         "$ref" : "/sub-schema/two-vector"
       }
+    },
+    "check" : {
+      "type" : "object",
+      "properties" : {
+        "name" : "string",
+        "family" : "string",
+        "kingdom" : "string",
+        "self" : "boolean"
+      },
+      "maxProperties": 1
     }
   }
 }
