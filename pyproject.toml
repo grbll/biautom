@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "biautom"
 authors = [{ name = "grbll", email = "grbll@tutanota.com" }]
-version = "0.0.2"
+version = "0.0.3"
 description = "Package for playtesting 'biautom' board game."
 readme = "README.md"
-#requires-python = ">3.9"
+requires-python = ">3.9"
 
 [tool.setuptools.packages.find]
 where = ["src"]

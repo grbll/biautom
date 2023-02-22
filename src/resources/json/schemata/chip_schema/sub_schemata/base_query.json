@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/base-query",
+  "type": "object",
+  "properties": {
+    "player": {
+      "description": "Which player's field to look in.",
+      "type": "integer"
+    },
+    "multiplier": {
+      "description": "Multiplier for matching chips.",
+      "type": "integer"
+    },
+    "reverse": {
+      "description": "Reverse the criterium.",
+      "type": "boolean"
+    },
+    "span": {
+      "description": "Build the span of given vectors.",
+      "type": "boolean"
+    },
+    "origin": {
+      "$ref": "/sub-schema/two-vector"
+    },
+    "vectors": {
+      "type": "array",
+      "items": {
+        "$ref": "/sub-schema/two-vector"
+      }
+    },
+    "check": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description" : "Look for a specific type of chips.",
+          "type": "string"
+        },
+        "family": {
+          "description" : "Look for chips from the same family.",
+          "type": "string"
+        },
+        "kingdom": {
+          "description" : "Look for chips from the same kingdom.",
+          "type": "string"
+        },
+        "self": {
+          "description" : "Look for this chip.",
+          "type": "boolean"
+        },
+        "query": {
+          "$ref" : "/sub-schema/base-query"
+        }
+
+      },
+      "maxProperties": 1,
+      "additionalProperties" : false
+    }
+  },
+  "additionalProperties" : false
+}

@@ -11,8 +11,9 @@
       "description": "Animal, Plant, Fungus?",
       "type": "string"
     },
-    "testi": {
-      "$ref": "/sub-schema/base-query"
+    "placement": {
+      "$ref": "/sub-schema/conjunctive-query"
     }
-  }
+  },
+  "additionalProperties": false
 }

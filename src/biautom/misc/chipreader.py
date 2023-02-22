@@ -1,49 +1,51 @@
+from importlib.abc import Traversable
 import json
 import re
-import importlib.resources
+from importlib.resources import contents, open_text
+from importlib.resources import files
+from importlib import import_module
+from types import ModuleType
 from typing import Dict
 
 from jsonschema import Draft202012Validator, RefResolver
 
 
+
 default_string = """
 {
     "family" : "Default",
-    "category" : "*",
-    "testi" : {"test2" : "44", "test1": "hallo"}
-}
-"""
-
-test_string = """
-{
-        "origin" : [2, 4],
-        "vectors": [[5,4]]
+    "kingdom" : "plant",
+    "placement" : [{"multiplier" : 2},
+                   {"check" : { "query" : { "multiplier" : 2}, "kingdom" : "you"}}]
 }
 """
 default_chip = json.loads(default_string)
 
-schemas = [
-    json.load(importlib.resources.open_text("biautom.misc", "chip-schema.json")),
-    json.load(importlib.resources.open_text("biautom.misc", "base-query-schema.json")),
-    json.load(importlib.resources.open_text("biautom.misc", "two-vector-schema.json")),
-]
+def get_all_json(module_files: Traversable) -> list[Dict]:
+    json_list: list[Dict] = []
 
-schema_store = {}
+    for file in module_files.iterdir():
+        if file.is_file() and re.match("[A-z]*\.json", file.name):
+            json_list.append(json.load(file.open()))
+        elif file.is_dir() and file.name!="__pycache__":
+            json_list = json_list + get_all_json(module_files.joinpath(file.name))
+    
+    return json_list
 
-for schema in schemas:
-    schema_store.update({schema["$id"]: schema})
 
-resolver = RefResolver.from_schema(schemas[1], store=schema_store)
-validator = Draft202012Validator(schemas[1], resolver=resolver)
+def load_schema(module_files: Traversable, base_schema_name: str)-> Draft202012Validator:
+    json_list: list[Dict] = get_all_json(module_files)
+    base_schema: Dict = json.load(module_files.joinpath(base_schema_name).open())
 
-jsonData = json.loads(test_string)
-validator.validate(jsonData)
+    schema_store: Dict[str,Dict] = { schema["$id"] : schema for schema in json_list}
 
+    resolver = RefResolver.from_schema(base_schema, store = schema_store)
+    return Draft202012Validator(base_schema, resolver = resolver)
 
 def load_all() -> Dict[str, Dict]:
     file_list = [
         file
-        for file in importlib.resources.contents("biautom.chipdata")
+        for file in importlib.resources.contents(chip_data_files)
         if re.match("[A-z]*\.json", file)
     ]
     chip_data = {"default": default_chip}
@@ -52,12 +54,9 @@ def load_all() -> Dict[str, Dict]:
         chip_data.update(
             {
                 file.split(".")[0]: json.load(
-                    importlib.resources.open_text("biautom.chipdata", file)
+                    importlib.resources.open_text(chip_data_files, file)
                 )
             }
         )
 
     return chip_data
-
-
-# print(load_all())
