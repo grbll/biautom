@@ -18,4 +18,4 @@ class OurObject:
 x = json.dumps(dict_)
 y = json.loads(x, object_hook=lambda d: OurObject(d))
 
-print(y.User.Name[1].noot) 
+print(y.User.Name[1].nooot) 
