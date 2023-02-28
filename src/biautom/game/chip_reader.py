@@ -9,7 +9,7 @@ from biautom.game.chip_data_handler import ChipDataHandler
 
 
 class ChipReader:
-    resources: Traversable = files("resources")
+    data: Traversable = files("biautom.data")
 
     @staticmethod
     def get_all_json(module_files: Traversable) -> list[Traversable]:
@@ -49,18 +49,18 @@ class ChipReader:
         default_string: str,
     ) -> None:
         schema_files = [
-            self.__class__.resources.joinpath(schema_path)
+            self.__class__.data.joinpath(schema_path)
             for schema_path in schema_paths
         ]
         schema_base_files = [
-            self.__class__.resources.joinpath(schema_base_path)
+            self.__class__.data.joinpath(schema_base_path)
             for schema_base_path in schema_base_paths
         ]
         chip_files: list[Traversable] = [
             chip_file
             for chip_path in chip_paths
             for chip_file in self.__class__.get_all_json(
-                self.__class__.resources.joinpath(chip_path)
+                self.__class__.data.joinpath(chip_path)
             )
         ]
 
@@ -73,6 +73,7 @@ class ChipReader:
                 self.__class__.load_schema(schema_files, schema_base_file)
             )
 
+        self.validators[0].validate(json.loads(default_string))
         if all(
             validator.is_valid(json.loads(default_string))
             for validator in self.validators
@@ -97,10 +98,9 @@ class ChipReader:
 
 default_string = """
 {
-    "family" : "Default",
-    "kingdom" : "plant",
-    "placement" : [{"multiplier" : 2},
-                   {"check" : {"query" : { "multiplier" : 2}}}]
+    "family" : ["Default"],
+    "role": ["carnivore", "symbiont"],
+    "placement" : []
 }
 """
 test = ChipReader(
@@ -110,4 +110,4 @@ test = ChipReader(
     default_string,
 )
 
-print(test.default)
+print(test.default.family)

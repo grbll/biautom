@@ -1,17 +1,15 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "biautom"
-authors = [{ name = "grbll", email = "grbll@tutanota.com" }]
-version = "0.0.3"
-description = "Package for playtesting 'biautom' board game."
+version = "0.1.0"
+description = "Game testing board game 'biautom'."
+authors = ["grbll <grbll@tutanota.com>"]
 readme = "README.md"
-requires-python = ">3.9"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.poetry.dependencies]
+python = "^3.10"
+jsonschema = "^4.17.3"
 
-[project.scripts]
-biautom-game = "biautom.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
