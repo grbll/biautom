@@ -1,4 +1,38 @@
 {
-  "type": "grass",
-  "cathegory" : "plant"
+  "family": [
+    "poacea"
+  ],
+  "role": [
+    "producer"
+  ],
+  "placement": {
+    "me": [
+      [
+        {
+          "multiplier": 1,
+          "positions": {
+            "origin": [
+              [
+                0,
+                0
+              ]
+            ],
+            "span": [
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          "check": {
+            "reverse": false,
+            "criteria": {},
+            "self": true
+          }
+        }
+      ]
+    ],
+    "neighbor": [],
+    "distant": []
+  }
 }

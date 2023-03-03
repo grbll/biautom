@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/player-query",
+  "type": "object",
+  "properties": {
+    "me": {
+      "$ref": "/sub-schema/min-query"
+    },
+    "neighbor": {
+      "$ref": "/sub-schema/min-query"
+    },
+    "distant": {
+      "$ref": "/sub-schema/min-query"
+    }
+  },
+  "additionalProperties" : false,
+  "required": ["me", "neighbor", "distant"]
+}

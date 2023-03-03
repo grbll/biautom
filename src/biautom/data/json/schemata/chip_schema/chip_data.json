@@ -19,7 +19,7 @@
       }
     },
     "placement": {
-      "$ref": "/sub-schema/conjunctive-query"
+      "$ref": "/sub-schema/player-query"
     }
   },
   "required": ["family", "role", "placement"],

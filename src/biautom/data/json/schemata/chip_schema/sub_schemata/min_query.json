@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file://schemas/sub-schema/conjunctive-query",
+  "$id": "file://schemas/sub-schema/min-query",
   "type": "array",
   "items": {
-    "$ref": "/sub-schema/base-query"
+    "$ref": "/sub-schema/sum-query"
   }
 }

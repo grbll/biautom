@@ -27,11 +27,11 @@ class ChipReader:
     def load_schema(
         schema_files: list[Traversable], base_schema_file: Traversable
     ) -> Draft202012Validator:
-        json_list: list[Dict] = [
-            json.load(json_file.open())
-            for files in schema_files
-            for json_file in __class__.get_all_json(files)
-        ]
+        json_list: list[Dict] = []
+        for files in schema_files:
+            for json_file in __class__.get_all_json(files):
+                json_list.append(json.load(json_file.open()))
+        
         base_schema: Dict = json.load(base_schema_file.open())
 
         schema_store: Dict[str, Dict] = {
@@ -67,12 +67,13 @@ class ChipReader:
         self.validators: list[Draft202012Validator] = []
         self.chip_data = {}
         self.default = {}
+        
 
         for schema_base_file in schema_base_files:
             self.validators.append(
                 self.__class__.load_schema(schema_files, schema_base_file)
             )
-
+        
         self.validators[0].validate(json.loads(default_string))
         if all(
             validator.is_valid(json.loads(default_string))
@@ -98,16 +99,48 @@ class ChipReader:
 
 default_string = """
 {
-    "family" : ["Default"],
-    "role": ["carnivore", "symbiont"],
-    "placement" : []
+  "family": [
+    "poacea"
+  ],
+  "role": [
+    "producer"
+  ],
+  "placement": {
+    "me": [
+      [
+        {
+          "multiplier": 1,
+          "positions": {
+            "origin": [
+              [
+                0,
+                0
+              ]
+            ],
+            "span": [
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          "check": {
+            "reverse": false,
+            "criteria": {},
+            "self": true
+          }
+        }
+      ]
+    ],
+    "neighbor": [],
+    "distant": []
+  }
 }
 """
+
 test = ChipReader(
     ["json/chip_data"],
     ["json/schemata"],
     ["json/schemata/chip_schema/chip_data.json"],
     default_string,
 )
-
-print(test.default.family)
