@@ -1,6 +1,0 @@
-{
-    "family" : "Default",
-    "kingdom" : "plant",
-    "placement" : [{"multiplier" : 2},
-                   {"check" : { "query" : { "multiplier" : 2}}}]
-}

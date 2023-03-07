@@ -4,15 +4,14 @@
   "type": "object",
   "properties": {
     "me": {
-      "$ref": "/sub-schema/min-query"
+      "$ref": "/sub-schema/base-query"
     },
     "neighbor": {
-      "$ref": "/sub-schema/min-query"
+      "$ref": "/sub-schema/base-query"
     },
     "distant": {
-      "$ref": "/sub-schema/min-query"
+      "$ref": "/sub-schema/base-query"
     }
   },
-  "additionalProperties" : false,
-  "required": ["me", "neighbor", "distant"]
+  "additionalProperties" : false
 }

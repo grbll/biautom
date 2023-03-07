@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file://schemas/sub-schema/position-specification",
+  "$id": "file://schemas/sub-schema/positions",
   "type": "object",
   "properties": {
     "origin": {

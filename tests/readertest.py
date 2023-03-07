@@ -1,3 +1,7 @@
+from biautom.game.chip_reader import ChipReader
+
+
+default_string = """
 {
   "family": [
     "poacea"
@@ -27,3 +31,14 @@
     }
   }
 }
+
+"""
+
+test = ChipReader(
+    ["json/chip_data"],
+    ["json/schemata"],
+    ["json/schemata/chip_schema/chip_data.json"],
+    default_string,
+)
+
+print(test.default.placement.me.positions.origin)

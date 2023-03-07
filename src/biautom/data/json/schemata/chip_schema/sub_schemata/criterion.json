@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/criterion",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "kingdom": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "family": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}
