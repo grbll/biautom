@@ -9,6 +9,9 @@
     "me": {
       "holds": {},
       "fails": {},
+      "value": {
+        "operation": "maximum"
+      },
       "positions": {
         "origin": [
           [
@@ -23,7 +26,20 @@
           ]
         ]
       },
-      "loop": []
+      "loop": [
+        {
+          "holds": {
+            "initial": true
+          },
+          "fails": {},
+          "value": {
+            "base": 0,
+            "operation": "sum"
+          },
+          "positions": {},
+          "loop": []
+        }
+      ]
     }
   }
 }

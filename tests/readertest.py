@@ -13,6 +13,9 @@ default_string = """
     "me": {
       "holds": {},
       "fails": {},
+      "value": {
+        "operation": "maximum"
+      },
       "positions": {
         "origin": [
           [
@@ -27,11 +30,23 @@ default_string = """
           ]
         ]
       },
-      "loop": []
+      "loop": [
+        {
+          "holds": {
+            "initial": true
+          },
+          "fails": {},
+          "value": {
+            "base": 0,
+            "operation": "sum"
+          },
+          "positions": {},
+          "loop": []
+        }
+      ]
     }
   }
 }
-
 """
 
 test = ChipReader(
@@ -41,4 +56,4 @@ test = ChipReader(
     default_string,
 )
 
-print(test.default.placement.me.positions.origin)
+print(test.default.placement.me.loop[0].fails)

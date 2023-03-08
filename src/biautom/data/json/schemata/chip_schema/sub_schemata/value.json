@@ -15,21 +15,17 @@
       "type": "integer"
     },
     "operation": {
-      "type": "integer",
+      "type": "string",
       "enum": [
         "product",
         "sum",
-        "maxmum",
-        "minmum"
+        "maximum",
+        "minimum"
       ]
     }
   },
   "additionalProperties": false,
   "required": [
-    "multiplier",
-    "min",
-    "max",
-    "base",
     "operation"
   ]
 }

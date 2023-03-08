@@ -14,6 +14,7 @@
       "items": {
         "$ref": "/sub-schema/two-dim-vector"
       }
-    }
+    },
+    "additionalProperties" : false
   }
 }

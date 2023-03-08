@@ -4,10 +4,10 @@
   "type": "object",
   "properties": {
     "holds": {
-      "$ref": "/sub-schema/criterion"
+      "$ref": "/sub-schema/condition"
     },
     "fails": {
-      "$ref": "/sub-schema/criterion"
+      "$ref": "/sub-schema/condition"
     },
     "value": {
       "$ref": "/sub-schema/value"
