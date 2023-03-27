@@ -42,11 +42,11 @@ class GameChip(Chip):
 
     def __init__(self, name: str) -> None:
         super().__init__(name),
-        self.data: ChipDataHandler= self.__class__.game_chips.chip_data.get(
+        self.data: ChipDataHandler = self.__class__.game_chips.chip_data.get(
             name, self.__class__.game_chips.default
         )
 
-    def condition_check(self, condition: ChipDataHandler, initial: Chip) -> bool:
+    def condition_check(self, condition: ChipDataHandler, initial: GameChip) -> bool:
         check: bool = True
         if condition.initial is not None:
             check = check and (not condition.initial or self == initial)
@@ -57,5 +57,8 @@ class GameChip(Chip):
                 (self.data.kingdom in condition.kingdom) or ("*" in condition.kingdom)
             )
         if condition.role is not None:
-            check = check and ((self.data.role in condition.role) or ("*" in condition.role))
+            check = check and (
+                (self.data.role in condition.role) or ("*" in condition.role)
+            )
         return check
+
