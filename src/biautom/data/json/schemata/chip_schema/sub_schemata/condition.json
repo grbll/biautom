@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/condition",
+  "type": "object",
+  "properties": {
+    "initial" : {
+      "type" : "boolean"
+    },
+    "name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "family": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "role": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

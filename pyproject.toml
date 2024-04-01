@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "biautom"
+version = "0.1.0"
+description = "Game testing board game 'biautom'."
+authors = ["grbll <grbll@tutanota.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jsonschema = "^4.17.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

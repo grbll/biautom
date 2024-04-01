@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/positions",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "array",
+      "items": {
+        "$ref": "/sub-schema/two-dim-vector"
+      }
+    },
+    "span": {
+      "type": "array",
+      "items": {
+        "$ref": "/sub-schema/two-dim-vector"
+      }
+    },
+    "additionalProperties" : false
+  }
+}

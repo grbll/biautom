@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/two-dim-vector",
+  "type" : "array",
+  "items": {
+    "type" : "integer"
+  },
+  "minItems" : 2,
+  "maxItems" : 2
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/chip",
+  "type": "object",
+  "properties": {
+    "family": {
+      "description": "A Group of similar chips",
+      "type": "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "role": {
+      "description": "Role in the ecosystem?",
+      "type": "array",
+      "items": {
+        "type" : "string",
+        "enum" : ["producer", "herbivore", "carnivore", "symbiont", "*"]
+      }
+    },
+    "placement": {
+      "$ref": "/sub-schema/player-query"
+    }
+  },
+  "required": ["family", "role", "placement"],
+  "additionalProperties": false
+}

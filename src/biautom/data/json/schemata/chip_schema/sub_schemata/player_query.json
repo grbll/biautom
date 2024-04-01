@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/player-query",
+  "type": "object",
+  "properties": {
+    "me": {
+      "$ref": "/sub-schema/base-query"
+    },
+    "neighbor": {
+      "$ref": "/sub-schema/base-query"
+    },
+    "distant": {
+      "$ref": "/sub-schema/base-query"
+    }
+  },
+  "additionalProperties" : false
+}

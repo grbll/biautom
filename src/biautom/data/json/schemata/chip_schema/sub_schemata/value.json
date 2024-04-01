@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/value",
+  "properties": {
+    "multiplier": {
+      "type": "integer"
+    },
+    "min": {
+      "type": "integer"
+    },
+    "max": {
+      "type": "integer"
+    },
+    "base": {
+      "type": "integer"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "product",
+        "sum",
+        "maximum",
+        "minimum"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "operation"
+  ]
+}

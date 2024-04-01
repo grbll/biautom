@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://schemas/sub-schema/base-query",
+  "type": "object",
+  "properties": {
+    "holds": {
+      "$ref": "/sub-schema/condition"
+    },
+    "fails": {
+      "$ref": "/sub-schema/condition"
+    },
+    "value": {
+      "$ref": "/sub-schema/value"
+    },
+    "positions": {
+      "$ref": "/sub-schema/positions"
+    },
+    "loop": {
+      "type": "array",
+      "items": {
+        "$ref": "/sub-schema/base-query"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "value",
+      "positions",
+      "loop"
+    ]
+  }
+}

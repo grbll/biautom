@@ -1,0 +1,45 @@
+{
+  "family": [
+    "poacea"
+  ],
+  "role": [
+    "producer"
+  ],
+  "placement": {
+    "me": {
+      "holds": {},
+      "fails": {},
+      "value": {
+        "operation": "maximum"
+      },
+      "positions": {
+        "origin": [
+          [
+            0,
+            0
+          ]
+        ],
+        "span": [
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "loop": [
+        {
+          "holds": {
+            "initial": true
+          },
+          "fails": {},
+          "value": {
+            "base": 0,
+            "operation": "sum"
+          },
+          "positions": {},
+          "loop": []
+        }
+      ]
+    }
+  }
+}
